@@ -1,0 +1,56 @@
+{
+  "name": "@chrisaguilar/pword",
+  "version": "0.0.1",
+  "description": "A password generator + manager",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisaguilar/pword.git"
+  },
+  "keywords": [
+    "password",
+    "manager",
+    "generator",
+    "typescript",
+    "TS",
+    "jest"
+  ],
+  "author": "Christopher Aguilar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisaguilar/pword/issues"
+  },
+  "homepage": "https://github.com/chrisaguilar/pword#readme",
+  "dependencies": {
+    "@types/fs-extra": "^0.0.37",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^7.0.5",
+    "fs-extra": "^2.0.0",
+    "minimist": "^1.2.0",
+    "ts-node": "^2.1.0",
+    "typescript": "^2.1.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^18.1.1",
+    "jest": "^18.1.0",
+    "ts-jest": "^18.0.3",
+    "tslint": "^4.4.2",
+    "tslint-eslint-rules": "^3.3.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "ts-jest/preprocessor"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "notify": true,
+    "verbose": true
+  }
+}
