@@ -1,4 +1,4 @@
 node_modules/
 trash/
-key
-store
+/key
+/store
