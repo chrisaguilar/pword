@@ -1,6 +1,5 @@
 import { randomBytes as rand } from 'crypto';
 import { writeFileSync as write } from 'fs';
-import { resolve } from 'path';
 
 import keyfile from './location';
 
