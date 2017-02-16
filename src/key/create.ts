@@ -1,6 +1,12 @@
-import { randomBytes as rand } from 'crypto';
-import { writeFileSync as write } from 'fs';
+import { randomBytes } from 'crypto';
+import { writeFile as write } from 'fs-promise';
 
-import keyfile from './location';
+import { keyfile, rand } from '.';
 
-export default () => write(keyfile, rand(2000000).toString('hex'), 'utf8');
+export const create = async function create(): Promise<void> {
+  try {
+    return write(keyfile, (await rand()).toString('hex'), 'hex');
+  } catch (e) {
+    throw e;
+  }
+};

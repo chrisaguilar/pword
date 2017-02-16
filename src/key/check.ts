@@ -1,5 +1,7 @@
-import { existsSync as exists } from 'fs-extra';
+import { exists } from 'fs-promise';
 
-import keyfile from './location';
+import { keyfile } from '.';
 
-export default () => exists(keyfile);
+export const check = function check(): Promise<boolean> {
+  return exists(keyfile);
+};

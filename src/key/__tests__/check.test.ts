@@ -1,30 +1,30 @@
-import { ensureFileSync as ensure, removeSync as remove } from 'fs-extra';
-import { resolve } from 'path';
+import { ensureFile as touch, remove as rm } from 'fs-promise';
 
-import check from '../check';
-import keyfile from '../location';
+import { check, keyfile } from '..';
 
 describe('key -> check', () => {
   describe('key does not exist', () => {
-    beforeAll(
-      () => remove(keyfile)
-    );
-    test(
-      'returns false',
-      () => expect(check()).toBeFalsy()
-    );
+    test('returns false', async () => {
+      try {
+        await rm(keyfile);
+        const exists: boolean = await check();
+        expect(exists).toBeFalsy();
+      } catch (e) {
+        throw e;
+      }
+    });
   });
 
   describe('key exists', () => {
-    beforeAll(
-      () => ensure(keyfile)
-    );
-    afterAll(
-      () => remove(keyfile)
-    );
-    test(
-      'returns true',
-      () => expect(check()).toBeTruthy()
-    );
+    test('returns true', async () => {
+      try {
+        await touch(keyfile);
+        const exists: boolean = await check();
+        expect(exists).toBeTruthy();
+        await rm(keyfile);
+      } catch (e) {
+        throw e;
+      }
+    });
   });
 });

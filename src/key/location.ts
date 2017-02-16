@@ -1,3 +1,3 @@
 import { resolve } from 'path';
 
-export default resolve(__dirname, '../../key');
+export const keyfile: string = resolve(__dirname, '../../key');

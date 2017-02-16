@@ -1,46 +1,49 @@
-import {
-  existsSync as exists,
-  readFileSync as read,
-  removeSync as remove,
-  writeFileSync as write
-} from 'fs-extra';
-import { resolve } from 'path';
+import { exists, remove as rm } from 'fs-promise';
 
-import key from '..';
-import keyfile from '../location';
+import { key, keyfile } from '..';
 
 describe('key', () => {
   describe('key does not exist', () => {
-    beforeEach(
-      () => !remove(keyfile) && key()
-    );
-    afterAll(
-      () => remove(keyfile)
-    );
-    test(
-      'key is created',
-      () => expect(exists(keyfile)).toBeTruthy()
-    );
-    test(
-      'key is read',
-      () => expect(read(keyfile, 'utf8').length).toEqual(4000000)
-    );
+    beforeAll(async () => await rm(keyfile));
+    afterAll(async () => await rm(keyfile));
+
+    test('key is created', async () => {
+      try {
+        expect(await exists(keyfile)).toBeFalsy();
+        await key();
+        expect(await exists(keyfile)).toBeTruthy();
+      } catch (e) {
+        throw e;
+      }
+    });
+
+    test('key is read', async () => {
+      try {
+        expect((await key()).length).toEqual(100);
+      } catch (e) {
+        throw e;
+      }
+    });
   });
   describe('key exists', () => {
-    beforeAll(
-      () => key()
-    );
-    test(
-      'key is not modified',
-      () => {
-        const old = read(keyfile, 'utf8');
-        key();
-        expect(read(keyfile, 'utf8')).toEqual(old);
+    beforeAll(async () => await rm(keyfile));
+    afterAll(async () => await rm(keyfile));
+
+    test('key is not modified', async () => {
+      try {
+        const old = await key();
+        expect(await key()).toEqual(old);
+      } catch (e) {
+        throw e;
       }
-    );
-    test(
-      'key is read',
-      () => expect(read(keyfile, 'utf8').length).toEqual(4000000)
-    );
+    });
+
+    test('key is read', async () => {
+      try {
+        expect((await key()).length).toEqual(100);
+      } catch (e) {
+        throw e;
+      }
+    });
   });
 });
