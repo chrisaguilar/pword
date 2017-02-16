@@ -25,10 +25,10 @@
   },
   "homepage": "https://github.com/chrisaguilar/pword#readme",
   "dependencies": {
-    "@types/fs-extra": "^0.0.37",
+    "@types/fs-promise": "^1.0.1",
     "@types/minimist": "^1.2.0",
     "@types/node": "^7.0.5",
-    "fs-extra": "^2.0.0",
+    "fs-promise": "^2.0.0",
     "minimist": "^1.2.0",
     "ts-node": "^2.1.0",
     "typescript": "^2.1.6"
@@ -44,7 +44,7 @@
     "transform": {
       ".(ts|tsx)": "ts-jest/preprocessor"
     },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
