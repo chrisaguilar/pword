@@ -9,9 +9,11 @@ describe('store -> create', () => {
 
   test('uses key to write a new map to the store file', async () => {
     try {
+
       const map = await encrypt(new Map());
       const store = await read(storefile, 'hex');
       expect(map).toEqual(store);
+
     } catch (e) {
       throw e;
     }
