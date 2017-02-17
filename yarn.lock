@@ -2567,13 +2567,12 @@ tsconfig@^5.0.2:
     strip-json-comments "^2.0.0"
 
 tslint-eslint-rules@^3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/tslint-eslint-rules/-/tslint-eslint-rules-3.3.0.tgz#1dec066b52f49200ca5eed5013a09a76065334c3"
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/tslint-eslint-rules/-/tslint-eslint-rules-3.4.0.tgz#694e988121e48168bdb7879a3cc3c9f90b90a1f2"
   dependencies:
     doctrine "^0.7.2"
-    tslint "^4.0.0"
 
-tslint@^4.0.0, tslint@^4.4.2:
+tslint@^4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/tslint/-/tslint-4.4.2.tgz#b14cb79ae039c72471ab4c2627226b940dda19c6"
   dependencies:
