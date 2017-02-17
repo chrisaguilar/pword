@@ -2,8 +2,12 @@
   "name": "@chrisaguilar/pword",
   "version": "0.0.1",
   "description": "A password generator + manager",
-  "main": "index.ts",
+  "main": "index.js",
+  "bin": {
+    "pword": "index.js"
+  },
   "scripts": {
+    "lint": "tslint --project tsconfig.json",
     "test": "jest"
   },
   "repository": {
@@ -18,23 +22,28 @@
     "TS",
     "jest"
   ],
-  "author": "Christopher Aguilar",
+  "author": "Christopher Aguilar <christopher.m.aguilar@gmail.com> (https://github.com/chrisaguilar)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chrisaguilar/pword/issues"
+    "url": "https://github.com/chrisaguilar/pword/issues",
+    "email": "christopher.m.aguilar@gmail.com"
   },
-  "homepage": "https://github.com/chrisaguilar/pword#readme",
+  "homepage": "https://github.com/chrisaguilar/pword",
+  "engines": {
+    "node": ">=7.4.0"
+  },
+  "preferGlobal": true,
   "dependencies": {
-    "@types/fs-promise": "^1.0.1",
-    "@types/minimist": "^1.2.0",
-    "@types/node": "^7.0.5",
     "fs-promise": "^2.0.0",
     "minimist": "^1.2.0",
     "ts-node": "^2.1.0",
     "typescript": "^2.1.6"
   },
   "devDependencies": {
+    "@types/fs-promise": "^1.0.1",
     "@types/jest": "^18.1.1",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^7.0.5",
     "jest": "^18.1.0",
     "ts-jest": "^18.0.3",
     "tslint": "^4.4.2",
