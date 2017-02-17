@@ -1,7 +1,6 @@
 import { destroy, initialize } from '.';
 import { add, close, open } from '..';
-import { formatters } from '../../lib';
-const { b, green, r, red } = formatters;
+import { b, green, r, red } from '../../lib/formatters';
 
 describe('store -> add', () => {
   beforeAll(async () => await initialize());
