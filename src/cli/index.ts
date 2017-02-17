@@ -1,3 +1,11 @@
 import { exec } from './exec';
 
-export const pword = exec();
+(async() => {
+  try {
+
+    await exec();
+
+  } catch (e) {
+    throw e;
+  }
+})();
