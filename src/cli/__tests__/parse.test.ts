@@ -7,8 +7,8 @@ describe('parse', () => {
     });
 
     test('the user passes 1 flag', () => {
-      expect(parse('--new someService')).toEqual([ 'n', 'someService' ]);
-      expect(parse('-s gmail abc')).toEqual([ 's', 'gmail', 'abc' ]);
+      expect(parse('--new someService')).toEqual([ 'n', '20', 'someService' ]);
+      expect(parse('-a gmail abc')).toEqual([ 'a', 'gmail', 'abc' ]);
       expect(parse('--version')).toEqual([ 'v' ]);
       expect(parse('-h')).toEqual([ 'h' ]);
     });
@@ -17,7 +17,7 @@ describe('parse', () => {
       expect(parse('--get mail --delete mail')).toEqual([ 'h' ]);
       expect(parse('--import db --export .')).toEqual([ 'h' ]);
       expect(parse('-h -v')).toEqual([ 'h' ]);
-      expect(parse('-v -s')).toEqual([ 'h' ]);
+      expect(parse('-v -a')).toEqual([ 'h' ]);
     });
 
     test('the user passes an unknown flag', () => {
@@ -143,8 +143,8 @@ describe('parse', () => {
       });
 
       test('the user provides 1 argument', () => {
-        expect(parse('--new someservice')).toEqual([ 'n', 'someservice' ]);
-        expect(parse('-n someservice')).toEqual([ 'n', 'someservice' ]);
+        expect(parse('--new someservice')).toEqual([ 'n', '20', 'someservice' ]);
+        expect(parse('-n someservice')).toEqual([ 'n', '20', 'someservice' ]);
       });
 
       test('the user provides 0 arguments', () => {
@@ -178,21 +178,21 @@ describe('parse', () => {
     });
   });
 
-  describe('save <name> <password>', () => {
-    describe('the user passes -s or --save', () => {
+  describe('add <name> <password>', () => {
+    describe('the user passes -a or --add', () => {
       test('the user provides 2 arguments', () => {
-        expect(parse('--save mail abc')).toEqual([ 's', 'mail', 'abc' ]);
-        expect(parse('-s mail abc')).toEqual([ 's', 'mail', 'abc' ]);
+        expect(parse('--add mail abc')).toEqual([ 'a', 'mail', 'abc' ]);
+        expect(parse('-a mail abc')).toEqual([ 'a', 'mail', 'abc' ]);
       });
 
       test('the user provides <2 arguments', () => {
-        expect(parse('--save facebook')).toEqual([ 'h' ]);
-        expect(parse('-s mail')).toEqual([ 'h' ]);
+        expect(parse('--add facebook')).toEqual([ 'h' ]);
+        expect(parse('-a mail')).toEqual([ 'h' ]);
       });
 
       test('the user provides >2 arguments', () => {
-        expect(parse('--save facebook abc123 asdfjkl')).toEqual([ 'h' ]);
-        expect(parse('-s google 123456 789fdsa')).toEqual([ 'h' ]);
+        expect(parse('--add facebook abc123 asdfjkl')).toEqual([ 'h' ]);
+        expect(parse('-a google 123456 789fdsa')).toEqual([ 'h' ]);
       });
     });
   });
