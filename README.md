@@ -1,7 +1,5 @@
 # @chrisaguilar/pword
 
-A simple password manager + generator that (mostly) works
-
 ### Why?
 
 Because I wanted to. I thought it would be fun to make, so I made it, and it
