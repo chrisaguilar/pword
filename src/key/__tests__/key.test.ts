@@ -22,7 +22,7 @@ describe('key', () => {
     test('key is read', async () => {
       try {
 
-        expect((await key()).length).toEqual(100);
+        expect((await key()).length).toEqual(24);
 
       } catch (e) {
         throw e;
@@ -47,7 +47,7 @@ describe('key', () => {
     test('key is read', async () => {
       try {
 
-        expect((await key()).length).toEqual(100);
+        expect((await key()).length).toEqual(24);
 
       } catch (e) {
         throw e;

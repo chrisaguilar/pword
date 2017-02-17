@@ -7,7 +7,7 @@ import { rand } from '../lib/rand';
 export const create = async function create(): Promise<void> {
   try {
 
-    return write(keyfile, await rand(100), 'hex');
+    return write(keyfile, await rand(24), 'hex');
 
   } catch (e) {
     throw e;

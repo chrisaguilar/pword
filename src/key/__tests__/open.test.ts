@@ -8,9 +8,9 @@ describe('key -> open', () => {
     try {
 
       await rm(keyfile);
-      await write(keyfile, await rand(100), 'hex');
+      await write(keyfile, await rand(24), 'hex');
       const key: string = await open();
-      expect(key.length).toEqual(100);
+      expect(key.length).toEqual(24);
       await rm(keyfile);
 
     } catch (e) {
