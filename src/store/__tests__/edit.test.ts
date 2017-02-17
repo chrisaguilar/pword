@@ -30,7 +30,7 @@ describe('store -> edit', () => {
   test('alerts user if the item does not exist in the store', async () => {
     try {
 
-      const rejected = edit('whatwhat', 'bzxcnbvxnvc');
+      const rejected = await edit('whatwhat', 'bzxcnbvxnvc');
       expect(rejected).toEqual(`${b}${red}whatwhat not in the store${r}`);
 
     } catch (e) {
