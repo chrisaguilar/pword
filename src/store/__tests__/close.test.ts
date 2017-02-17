@@ -7,6 +7,7 @@ describe('store -> close', () => {
 
   test('writes given data to the store', async () => {
     try {
+
       const store = await open();
 
       store.set('facebook', 'facebook_pass');
@@ -22,6 +23,7 @@ describe('store -> close', () => {
       expect((await open()).has('gmail')).toBeTruthy();
       expect((await open()).get('facebook')).toBe('facebook_pass');
       expect((await open()).get('gmail')).toBe('gmail_pass');
+
     } catch (e) {
       throw e;
     }
