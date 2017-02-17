@@ -7,10 +7,12 @@ describe('store -> open', () => {
 
   test('opens & decrypts store file', async () => {
     try {
+
       const store = await open();
       expect(store).toBeTruthy();
       expect(store.size).toBe(0);
       expect(store.entries().next().value).toBeUndefined();
+
     } catch (e) {
       throw e;
     }
