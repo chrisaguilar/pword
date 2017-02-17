@@ -7,7 +7,6 @@ import { del } from './del';
 import { edit } from './edit';
 import { encrypt } from './encrypt';
 import { find } from './find';
-import { generate } from './generate';
 import { get } from './get';
 import { storefile } from './location';
 import { newpass } from './new';
@@ -24,7 +23,6 @@ export {
   edit,
   encrypt,
   find,
-  generate,
   get,
   newpass,
   open,
