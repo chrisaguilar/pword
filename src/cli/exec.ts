@@ -6,7 +6,7 @@ const { version } = require('../../package.json');
 
 export const exec = async function exec() {
   const [ opt, ...args ] = parse(process.argv.slice(2).join(' '));
-  return console.log(
+  return console.log(`\n${
     opt === 'a' ? await add(args[0], args[1])             :
     opt === 'd' ? await del(args[0])                      :
     opt === 'e' ? await edit(args[0], args[1])            :
@@ -19,5 +19,5 @@ export const exec = async function exec() {
     opt === 'v' ? version                                 :
     opt === 'x' ? 'Exporting Not Implemented'
                 : help()
-  );
+  }\n`);
 };
