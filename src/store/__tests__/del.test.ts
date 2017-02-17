@@ -1,5 +1,7 @@
 import { destroy, initialize } from '.';
 import { close, del, open } from '..';
+import { formatters } from '../../lib';
+const { b, green, r, red } = formatters;
 
 describe('store -> del', () => {
   beforeAll(async () => await initialize());
@@ -7,6 +9,7 @@ describe('store -> del', () => {
 
   test('deletes items from the store', async () => {
     try {
+
       const store = await open();
 
       store.set('gmail', 'abc123');
@@ -17,9 +20,23 @@ describe('store -> del', () => {
       await close(store);
       expect(await open()).toEqual(store);
 
-      await del('facebook');
+      const deleted = await del('facebook');
       store.delete('facebook');
       expect(await open()).toEqual(store);
+
+      expect(deleted).toEqual(`Deleted ${b}${green}facebook${r} from the store`);
+
+    } catch (e) {
+      throw e;
+    }
+  });
+
+  test('alerts the user if an item is not present in the store', async () => {
+    try {
+
+      const rejected = await del('asdf');
+      expect(rejected).toEqual(`${b}${red}asdf not in the store${r}`);
+
     } catch (e) {
       throw e;
     }
