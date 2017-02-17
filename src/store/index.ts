@@ -7,9 +7,12 @@ import { del } from './del';
 import { edit } from './edit';
 import { encrypt } from './encrypt';
 import { find } from './find';
+import { generate } from './generate';
 import { get } from './get';
 import { storefile } from './location';
+import { newpass } from './new';
 import { open } from './open';
+import { rename } from './rename';
 
 export {
   add,
@@ -21,7 +24,10 @@ export {
   edit,
   encrypt,
   find,
+  generate,
   get,
-  storefile,
-  open
+  newpass,
+  open,
+  rename,
+  storefile
 };
