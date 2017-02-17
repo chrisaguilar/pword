@@ -51,6 +51,6 @@
       "js"
     ],
     "notify": true,
-    "verbose": true
+    "verbose": false
   }
 }
