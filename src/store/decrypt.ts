@@ -19,7 +19,9 @@ const transform = function transform(str: string): Promise<string> {
 
 export const decrypt = async function decrypt(store: string): Promise<Map<{}, {}>> {
   try {
+
     return new Map(JSON.parse(await transform(store)));
+
   } catch (e) {
     throw e;
   }
