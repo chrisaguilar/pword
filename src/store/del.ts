@@ -1,6 +1,5 @@
 import { close, open } from '.';
-import { formatters } from '../lib';
-const { b, green, r, red } = formatters;
+import { b, green, r, red } from '../lib/formatters';
 
 export const del = async function del(name: string): Promise<string> {
   try {

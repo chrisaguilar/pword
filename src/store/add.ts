@@ -1,6 +1,5 @@
 import { close, open } from '.';
-import { formatters } from '../lib';
-const { b, green, r, red } = formatters;
+import { b, green, r, red } from '../lib/formatters';
 
 export const add = async function add(name: string, password: string): Promise<string> {
   try {

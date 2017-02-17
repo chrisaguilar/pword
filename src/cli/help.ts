@@ -1,4 +1,4 @@
-import { b, r } from './formatters';
+import { b, r } from '../lib/formatters';
 
 export const help = function help (): string {
   return `
