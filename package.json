@@ -44,8 +44,8 @@
     "@types/jest": "^18.1.1",
     "@types/minimist": "^1.2.0",
     "@types/node": "^7.0.5",
-    "jest": "^18.1.0",
-    "ts-jest": "^18.0.3",
+    "jest": "^19.0.0",
+    "ts-jest": "^19.0.0",
     "tslint": "^4.4.2",
     "tslint-eslint-rules": "^3.3.0"
   },
