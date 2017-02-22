@@ -2546,7 +2546,13 @@ ts-node@^2.1.0:
     xtend "^4.0.0"
     yn "^1.2.0"
 
-tsconfig@^5.0.2:
+tsconfig-paths@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-2.1.1.tgz#f1db835ed0e2865d4159da2525cb88e1e08fffa1"
+  dependencies:
+    tsconfig "^5.0.3"
+
+tsconfig@^5.0.2, tsconfig@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/tsconfig/-/tsconfig-5.0.3.tgz#5f4278e701800967a8fc383fd19648878f2a6e3a"
   dependencies:
