@@ -7,7 +7,7 @@ describe('key -> create', () => {
     try {
       await remove(file);
       await create();
-      const key = await readFile(file, 'hex');
+      const key: string = await readFile(file, 'hex');
       expect(key.length).toBeGreaterThan(25);
       expect(key.length).toBeLessThan(100);
       await remove(file);
