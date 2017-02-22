@@ -1,15 +1,11 @@
-import { readFile as read } from 'fs-promise';
+import { readFile } from 'fs-promise';
 
-import { check, create, decrypt, storefile } from '.';
+import { create, decrypt, file } from 'store';
 
-export const open = async function open(): Promise<Map<{}, {}>> {
+export const open = async function open() {
   try {
-
-    !await check() && await create();
-
-    return await decrypt(await read(storefile, 'hex'));
-
+    return await decrypt(await readFile(file, 'hex'));
   } catch (e) {
-    throw e;
+    return console.error(e);
   }
 };
