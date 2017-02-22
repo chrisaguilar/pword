@@ -1,15 +1,34 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
+    "baseUrl": "./",
     "forceConsistentCasingInFileNames": true,
-    "listEmittedFiles": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": false,
     "noImplicitThis": true,
+    "paths": {
+      "cli/*": [
+        "./src/cli/*"
+      ],
+      "key": [
+        "./src/key/index.ts"
+      ],
+      "key/*": [
+        "./src/key/*"
+      ],
+      "lib/*": [
+        "./src/lib/*"
+      ],
+      "store": [
+        "./src/store/index.ts"
+      ],
+      "store/*": [
+        "./src/store/*"
+      ]
+    },
     "strictNullChecks": true,
-    "outDir": "dist/",
     "sourceMap": false,
     "target": "es6"
   }
