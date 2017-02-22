@@ -1,18 +1,11 @@
-import { randomBytes } from 'crypto';
-import { check } from './check';
 import { create } from './create';
-import { keyfile } from './location';
-import { open } from './open';
+import { file } from './file';
+import { get } from './get';
 
-export { check, create, open, keyfile };
-
-export const key = async function key() {
-  try {
-
-    !await check() && await create();
-    return await open();
-
-  } catch (e) {
-    return console.error(e);
-  }
-};
+// There's only two things that need to be done to the key:
+//   1. It needs to be created
+//   2. It needs to be retrieved
+//
+// The key's location also needs to be known throughout the program,
+//   so that should also be exported along with the two operations.
+export { create, file, get };
