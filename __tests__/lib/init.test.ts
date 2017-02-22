@@ -19,10 +19,10 @@ describe('init', () => {
     try {
       await init();
 
-      const teststore = await(encrypt(new Map()));
+      const teststore: string = await(encrypt(new Map())) as string;
 
-      const keyfile = await readFile(key.file, 'hex');
-      const storefile = await readFile(store.file, 'hex');
+      const keyfile: string = await readFile(key.file, 'hex');
+      const storefile: string = await readFile(store.file, 'hex');
 
       expect(keyfile).toBeTruthy();
       expect(typeof keyfile).toBe('string');

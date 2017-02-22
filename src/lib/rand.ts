@@ -7,7 +7,7 @@ import { randomBytes } from 'crypto';
 //   rounded down, in order to pass crypto.randomBytes a valid length.
 // The function returns a promise that resolves with the hex string, or
 //   rejects with the error, if any
-export const rand = function rand(length: number): Promise<string> {
+export const rand = function rand(length: number) {
   const { abs, floor } = Math;
   return new Promise<string>((resolve, reject) => {
     return randomBytes(floor(abs(length) / 2), (err, buf) => {
