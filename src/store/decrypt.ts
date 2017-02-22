@@ -1,10 +1,10 @@
 import { createDecipher } from 'crypto';
 
-import { key } from '../key';
+import { get as getKey } from '../key';
 
 const transform = function transform(str: string): Promise<string> {
   return new Promise<string>(async (resolve, reject) => {
-    const decipher = createDecipher('aes256', await key());
+    const decipher = createDecipher('aes256', await getKey());
     const decrypted: string[] = [];
 
     decipher
@@ -17,12 +17,10 @@ const transform = function transform(str: string): Promise<string> {
   });
 };
 
-export const decrypt = async function decrypt(store: string): Promise<Map<{}, {}>> {
+export const decrypt = async function decrypt(store: string): Promise<Map<{}, {}>|void> {
   try {
-
     return new Map(JSON.parse(await transform(store)));
-
   } catch (e) {
-    throw e;
+    return console.error(e);
   }
 };
