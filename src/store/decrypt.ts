@@ -2,7 +2,7 @@ import { createDecipher } from 'crypto';
 
 import { get as getKey } from '../key';
 
-const transform = function transform(str: string): Promise<string> {
+const transform = function transform(str: string) {
   return new Promise<string>(async (resolve, reject) => {
     const decipher = createDecipher('aes256', await getKey());
     const decrypted: string[] = [];
