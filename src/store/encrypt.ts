@@ -1,10 +1,10 @@
 import { createCipher } from 'crypto';
 
-import { key } from '../key';
+import { get as getKey } from 'key';
 
 const transform = function transform(str: string): Promise<string> {
   return new Promise<string>(async (resolve, reject) => {
-    const cipher = createCipher('aes256', await key());
+    const cipher = createCipher('aes256', await getKey());
     const encrypted: string[] = [];
 
     cipher
@@ -17,12 +17,10 @@ const transform = function transform(str: string): Promise<string> {
   });
 };
 
-export const encrypt = async function encrypt(store: Map<{}, {}>): Promise<string> {
+export const encrypt = async function encrypt(store: Map<{}, {}>): Promise<string|void> {
   try {
-
     return await transform(JSON.stringify([ ...store.entries() ]));
-
   } catch (e) {
-    throw e;
+    return console.error(e);
   }
 };
