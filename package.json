@@ -50,16 +50,13 @@
     "tslint-eslint-rules": "^3.3.0"
   },
   "jest": {
+    "moduleFileExtensions": ["js", "jsx", "json", "ts", "tsx"],
+    "notify": true,
+    "testEnvironment": "node",
+    "testMatch": [ "**/__tests__/**/*.test.ts?(x)" ],
     "transform": {
       ".(ts|tsx)": "ts-jest/preprocessor"
     },
-    "testRegex": "(/__tests__/.*\\.(test|spec))\\.(ts|tsx|js)$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
-    "notify": true,
     "verbose": false
   }
 }
