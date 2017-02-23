@@ -1,4 +1,5 @@
 node_modules/
 /key
 /store
+/TODO.md
 .tsnode_cache/
