@@ -7,5 +7,4 @@ require('ts-node').register({
   ignore: false,
   lazy: true
 });
-require('tsconfig-paths/register');
 require('./src/cli');
