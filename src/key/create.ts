@@ -1,14 +1,16 @@
-import { randomBytes } from 'crypto';
 import { writeFile as write } from 'fs-promise';
 
-import { keyfile } from '.';
-import { rand } from '../lib/rand';
+import * as k from '.';
+import { rand } from '../lib';
 
-export const create = async function create(): Promise<void> {
+interface Create {
+  (): Promise<void>;
+}
+
+export const create: Create = async function() {
   try {
-
-    return write(keyfile, await rand(24), 'hex');
-
+    const key: string = await rand(Math.floor(Math.random() * (100 - 25) + 25));
+    return write(k.file, key, 'hex');
   } catch (e) {
     return console.error(e) as any;
   }

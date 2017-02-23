@@ -1,7 +1,11 @@
-import { readFile as read } from 'fs-promise';
+import { readFile } from 'fs-promise';
 
-import { keyfile } from '.';
+import * as k from '.';
 
-export const open = function open(): Promise<string> {
-  return read(keyfile, 'hex');
+interface Open {
+  (): Promise<string>;
+}
+
+export const open: Open = function() {
+  return readFile(k.file, 'hex');
 };
