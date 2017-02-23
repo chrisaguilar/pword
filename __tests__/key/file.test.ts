@@ -1,9 +1,10 @@
 import { resolve } from 'path';
 
-import { file } from 'key';
+import * as k from 'key';
 
 describe('key -> file', () => {
-  test('should be a string', () => expect(typeof file).toBe('string'));
-  const path: string = resolve(__dirname, '../../key');
-  test('should point to the correct directory', () => expect(path).toBe(file));
+  test('should be a string', () => expect(typeof k.file).toBe('string'));
+
+  const path = resolve(__dirname, '../../key');
+  test('should point to the correct directory', () => expect(path).toBe(k.file));
 });

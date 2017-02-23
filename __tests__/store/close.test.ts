@@ -1,48 +1,28 @@
 import { remove } from 'fs-promise';
 
-import * as key from 'key';
-import { init } from 'lib/init';
-import * as store from 'store';
+import * as k from 'key';
+import { init } from 'lib';
+import * as s from 'store';
 
 describe('store -> close', () => {
-  beforeAll(async () => {
-    try {
-      await init();
-    } catch (e) {
-      return console.error(e);
-    }
-  });
-
-  afterAll(async () => {
-    try {
-      await remove(key.file);
-      await remove(store.file);
-    } catch (e) {
-      return console.error(e);
-    }
-  });
-
   test('writes given data to the store', async () => {
     try {
-
-      const teststore = await store.open();
-
+      await init();
+      const teststore = await s.open();
       teststore.set('facebook', 'facebook_pass');
-      await store.close(teststore);
-
-      expect((await store.open()).has('facebook')).toBeTruthy();
-      expect((await store.open()).get('facebook')).toBe('facebook_pass');
-
+      await s.close(teststore);
+      expect((await s.open()).has('facebook')).toBeTruthy();
+      expect((await s.open()).get('facebook')).toBe('facebook_pass');
       teststore.set('gmail', 'gmail_pass');
-      await store.close(teststore);
-
-      expect((await store.open()).has('facebook')).toBeTruthy();
-      expect((await store.open()).has('gmail')).toBeTruthy();
-      expect((await store.open()).get('facebook')).toBe('facebook_pass');
-      expect((await store.open()).get('gmail')).toBe('gmail_pass');
-
+      await s.close(teststore);
+      expect((await s.open()).has('facebook')).toBeTruthy();
+      expect((await s.open()).has('gmail')).toBeTruthy();
+      expect((await s.open()).get('facebook')).toBe('facebook_pass');
+      expect((await s.open()).get('gmail')).toBe('gmail_pass');
+      remove(k.file);
+      remove(s.file);
     } catch (e) {
-      throw e;
+      expect(e).toBeNull();
     }
   });
 });

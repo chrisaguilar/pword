@@ -1,4 +1,4 @@
-import { help } from '../help';
+import { help } from 'cli';
 
 describe('help', () => {
   test('should return data', () => {

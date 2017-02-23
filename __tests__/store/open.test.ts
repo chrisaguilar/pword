@@ -1,7 +1,7 @@
 import { remove } from 'fs-promise';
 
 import * as key from 'key';
-import { init } from 'lib/init';
+import { init } from 'lib';
 import * as store from 'store';
 
 describe('store -> open', () => {

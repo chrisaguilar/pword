@@ -9,23 +9,17 @@
     "noImplicitReturns": false,
     "noImplicitThis": true,
     "paths": {
-      "cli/*": [
-        "./src/cli/*"
+      "cli": [
+        "./src/cli.ts"
       ],
       "key": [
-        "./src/key/index.ts"
+        "./src/key.ts"
       ],
-      "key/*": [
-        "./src/key/*"
-      ],
-      "lib/*": [
-        "./src/lib/*"
+      "lib": [
+        "./src/lib.ts"
       ],
       "store": [
-        "./src/store/index.ts"
-      ],
-      "store/*": [
-        "./src/store/*"
+        "./src/store.ts"
       ]
     },
     "strictNullChecks": true,

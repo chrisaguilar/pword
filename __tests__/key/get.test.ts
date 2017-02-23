@@ -1,16 +1,19 @@
 import { remove, writeFile } from 'fs-promise';
 
-import { file, get } from 'key';
-import { rand } from 'lib/rand';
+import * as k from 'key';
+import { rand } from 'lib';
+import * as setup from '../setup';
 
 describe('key -> open', () => {
   test('opens the key file', async () => {
     try {
-      await remove(file);
-      await writeFile(file, await rand(24), 'hex');
-      const key: string = await get();
+      await setup.before();
+
+      await writeFile(k.file, await rand(24), 'hex');
+      const key = await k.get();
       expect(key.length).toEqual(24);
-      await remove(file);
+
+      await setup.after();
     } catch (e) {
       expect(e).toBeNull();
     }

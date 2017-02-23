@@ -1,4 +1,4 @@
-import { rand } from 'lib/rand';
+import { rand } from 'lib';
 
 describe('lib -> rand', () => {
   test('returns a randomly-generated hex string of a given length', async () => {

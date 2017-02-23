@@ -1,7 +1,8 @@
 import { remove } from 'fs-promise';
 
-import { create as createKey, file as key } from 'key';
-import { decrypt, encrypt } from 'store';
+import * as k from 'key';
+import * as s from 'store';
+import * as setup from '../setup';
 
 describe('store -> decrypt', () => {
   let encA: any;
@@ -9,32 +10,18 @@ describe('store -> decrypt', () => {
   let decA: any;
   let decB: any;
 
-  beforeAll(async () => {
-    try {
-      await createKey();
-      encA = await encrypt(new Map());
-      encB = await encrypt(new Map([ [ 'gmail', 'abc123' ] ]));
-    } catch (e) {
-      return console.error(e);
-    }
-  });
-
-  afterAll(async () => {
-    try {
-      await remove(key);
-    } catch (e) {
-      return console.error(e);
-    }
-  });
-
   test('returns a new map', async () => {
     try {
-      decA = await decrypt(encA);
-      decB = await decrypt(encB);
+      await setup.before();
+
+      decA = await s.decrypt(encA);
+      decB = await s.decrypt(encB);
       expect(decA).toBeInstanceOf(Map);
       expect(decA.size).toBe(0);
       expect(decB).toBeInstanceOf(Map);
       expect(decB.size).toBe(1);
+
+      await setup.after();
     } catch (e) {
       expect(e).toBeNull();
     }
@@ -42,10 +29,14 @@ describe('store -> decrypt', () => {
 
   test('properly decrypts data', async () => {
     try {
-      decA = await decrypt(encA);
-      decB = await decrypt(encB);
+      await setup.before();
+
+      decA = await s.decrypt(encA);
+      decB = await s.decrypt(encB);
       expect(decA.entries().next().value).toBeUndefined();
       expect(decB.entries().next().value).toEqual([ 'gmail', 'abc123' ]);
+
+      await setup.after();
     } catch (e) {
       expect(e).toBeNull();
     }

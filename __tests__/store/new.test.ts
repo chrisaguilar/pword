@@ -1,8 +1,7 @@
 import { remove } from 'fs-promise';
 
 import * as k from 'key';
-import { b, green, r, red } from 'lib/formatters';
-import { init } from 'lib/init';
+import { b, green, init, r, red } from 'lib';
 import * as s from 'store';
 
 describe('store -> new', () => {

@@ -1,4 +1,4 @@
-import { parse } from '../parse';
+import { parse } from 'cli';
 
 describe('parse', () => {
   describe('# of flags', () => {

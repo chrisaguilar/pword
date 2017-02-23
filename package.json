@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "postinstall": "node ./init.js",
+    "postinstall": "ts-node -DLF --no-ignore --cache-directory ./tsnode_cache/ -r tsconfig-paths/register ./src/lib/init.ts",
     "test": "jest"
   },
   "repository": {
@@ -35,6 +35,10 @@
   },
   "preferGlobal": true,
   "dependencies": {
+    "@types/fs-promise": "^1.0.1",
+    "@types/jest": "^18.1.1",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^7.0.5",
     "fs-promise": "^2.0.0",
     "minimist": "^1.2.0",
     "ts-node": "^2.1.0",
@@ -42,10 +46,6 @@
     "typescript": "^2.1.6"
   },
   "devDependencies": {
-    "@types/fs-promise": "^1.0.1",
-    "@types/jest": "^18.1.1",
-    "@types/minimist": "^1.2.0",
-    "@types/node": "^7.0.5",
     "jest": "^19.0.0",
     "ts-jest": "^19.0.0",
     "tslint": "^4.4.2",
@@ -62,7 +62,8 @@
     "transform": {
       ".(ts|tsx)": "ts-jest/preprocessor"
     },
-    "testMatch": [ "<rootDir>/__tests__/**/*.ts?(x)" ],
+    "testEnvironment": "node",
+    "testMatch": [ "<rootDir>/__tests__/**/*.test.ts?(x)" ],
     "verbose": false
   }
 }

@@ -1,4 +1,4 @@
-import * as fmt from 'lib/formatters';
+import * as fmt from 'lib';
 
 describe('lib -> formatters', () => {
   test('b should be a string', () => expect(typeof fmt.b).toBe('string'));
