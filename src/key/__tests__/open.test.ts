@@ -1,20 +1,22 @@
-import { remove as rm, writeFile as write } from 'fs-promise';
+import { remove, writeFile } from 'fs-promise';
 
-import { keyfile, open } from '..';
-import { rand } from '../../lib/rand';
+import * as k from '..';
+import { rand, setup } from '../../lib';
 
 describe('key -> open', () => {
   test('opens the key file', async () => {
     try {
+      await setup.before();
 
-      await rm(keyfile);
-      await write(keyfile, await rand(24), 'hex');
-      const key: string = await open();
-      expect(key.length).toEqual(24);
-      await rm(keyfile);
+      await remove(k.file);
+      await writeFile(k.file, await rand(24), 'hex');
 
+      const testkey: string = await k.open();
+      expect(testkey.length).toEqual(24);
+
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });

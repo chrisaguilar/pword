@@ -1,19 +1,22 @@
-import { readFile as read, remove as rm } from 'fs-promise';
+import { readFile, remove } from 'fs-promise';
 
-import { create, keyfile } from '..';
+import * as k from '..';
+import { setup } from '../../lib';
 
 describe('key -> create', () => {
-  test('writes 24 random characters to a file', async () => {
+  test('writes 25..100 random characters to a file', async () => {
     try {
+      await setup.before();
 
-      await rm(keyfile);
-      await create();
-      const key = await read(keyfile, 'hex');
-      expect(key.length).toBe(24);
-      await rm(keyfile);
+      await remove(k.file);
+      await k.create();
+      const key: string = await readFile(k.file, 'hex');
+      expect(key.length).toBeGreaterThanOrEqual(25);
+      expect(key.length).toBeLessThan(100);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });
