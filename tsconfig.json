@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
     "alwaysStrict": true,
-    "forceConsistentCasingInFileNames": true,
-    "listEmittedFiles": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "noImplicitReturns": false,
+    "noImplicitReturns": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
-    "outDir": "dist/",
-    "sourceMap": false,
     "target": "es6"
   }
 }
