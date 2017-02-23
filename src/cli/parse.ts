@@ -1,6 +1,10 @@
 import * as minimist from 'minimist';
 
-export const parse = function parse (input: string): string[] {
+interface Parse {
+  (input: string): string[];
+}
+
+export const parse: Parse = function (input) {
   const args: any = minimist(input.split(' '), {
     alias: {
       a: 'add', d: 'delete', e: 'edit', f: 'find', g: 'get', h: 'help',

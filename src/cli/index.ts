@@ -1,11 +1,5 @@
 import { exec } from './exec';
+import { help } from './help';
+import { parse } from './parse';
 
-(async() => {
-  try {
-
-    await exec();
-
-  } catch (e) {
-    return console.error(e) as any;
-  }
-})();
+export { exec, help, parse };
