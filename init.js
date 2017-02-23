@@ -9,7 +9,7 @@
       ignore: false,
       lazy: true
     });
-    await require('./src/lib/init').init();
+    await require('./src/lib').init();
   } catch (e) {
     return console.error(e);
   }
