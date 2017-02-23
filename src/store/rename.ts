@@ -15,6 +15,6 @@ export const rename = async function rename(from: string, to: string): Promise<s
     return `Renamed ${b}${green}${from}${r} to ${b}${green}${to}${r}`;
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

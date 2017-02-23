@@ -13,6 +13,6 @@ export const get = async function get(name: string): Promise<string> {
     return `${b}${green}${name}${r}: ${password}`;
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

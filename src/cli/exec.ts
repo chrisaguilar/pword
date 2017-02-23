@@ -30,6 +30,6 @@ export const exec = async function exec(): Promise<void> {
     }`);
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

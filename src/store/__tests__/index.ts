@@ -9,7 +9,7 @@ export const destroy = async function destroy(): Promise<boolean> {
     const keyfileRemoved = !await rm(keyfile);
     return storefileRemoved && keyfileRemoved;
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };
 
@@ -20,6 +20,6 @@ export const initialize = async function initialize(): Promise<boolean> {
     const created = !await create();
     return filesRemoved && checked && created;
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

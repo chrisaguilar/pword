@@ -16,7 +16,7 @@ describe('store -> new', () => {
       expect(((await open()).get('wikipedia') as string).length).toBe(50);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -27,7 +27,7 @@ describe('store -> new', () => {
       expect(await newpass(10, 'Steam')).toBe(`${b}${red}Steam already present in store${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

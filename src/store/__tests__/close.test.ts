@@ -25,7 +25,7 @@ describe('store -> close', () => {
       expect((await open()).get('gmail')).toBe('gmail_pass');
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

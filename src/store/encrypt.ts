@@ -23,6 +23,6 @@ export const encrypt = async function encrypt(store: Map<{}, {}>): Promise<strin
     return await transform(JSON.stringify([ ...store.entries() ]));
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

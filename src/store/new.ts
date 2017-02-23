@@ -7,6 +7,6 @@ export const newpass = async function newpass(length: number, name: string) {
     return await add(name, await rand(length));
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

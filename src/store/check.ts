@@ -8,6 +8,6 @@ export const check = function check(): Promise<boolean> {
     return exists(storefile);
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

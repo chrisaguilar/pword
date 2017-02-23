@@ -23,7 +23,7 @@ describe('store -> edit', () => {
       expect(edited).toEqual(`${b}${green}facebook${r} set to ${b}${green}newpass${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -34,7 +34,7 @@ describe('store -> edit', () => {
       expect(rejected).toEqual(`${b}${red}whatwhat not in the store${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

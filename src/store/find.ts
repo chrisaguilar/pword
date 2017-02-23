@@ -14,6 +14,6 @@ export const find = async function find(term: string): Promise<string|string[]> 
     return matches.map(([ x, y ]) => `${b}${green}${x}${r}: ${y}`);
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

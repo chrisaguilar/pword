@@ -24,7 +24,7 @@ describe('store -> find', () => {
       expect(await find('mail')).toEqual(expected);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -34,7 +34,7 @@ describe('store -> find', () => {
       expect(await find('youtube')).toEqual(`${b}${red}No matches found for youtube${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

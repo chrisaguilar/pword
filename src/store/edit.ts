@@ -14,6 +14,6 @@ export const edit = async function edit(name: string, password: string): Promise
     return `${b}${green}${name}${r} set to ${b}${green}${password}${r}`;
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

@@ -6,6 +6,6 @@ import { exec } from './exec';
     await exec();
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 })();

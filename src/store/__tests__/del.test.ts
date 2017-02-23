@@ -26,7 +26,7 @@ describe('store -> del', () => {
       expect(deleted).toEqual(`Deleted ${b}${green}facebook${r} from the store`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -37,7 +37,7 @@ describe('store -> del', () => {
       expect(rejected).toEqual(`${b}${red}asdf not in the store${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

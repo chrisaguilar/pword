@@ -15,6 +15,6 @@ export const add = async function add(name: string, password: string): Promise<s
     return `${b}${green}${name}${r} set to ${b}${green}${password}${r}`;
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

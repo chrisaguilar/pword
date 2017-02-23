@@ -14,6 +14,6 @@ export const del = async function del(name: string): Promise<string> {
     return `Deleted ${b}${green}${name}${r} from the store`;
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

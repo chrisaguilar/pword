@@ -23,6 +23,6 @@ export const decrypt = async function decrypt(store: string): Promise<Map<{}, {}
     return new Map(JSON.parse(await transform(store)));
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

@@ -10,6 +10,6 @@ export const create = async function create(): Promise<void> {
     return write(keyfile, await rand(24), 'hex');
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

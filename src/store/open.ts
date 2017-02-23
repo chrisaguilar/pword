@@ -10,6 +10,6 @@ export const open = async function open(): Promise<Map<{}, {}>> {
     return await decrypt(await read(storefile, 'hex'));
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

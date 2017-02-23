@@ -22,7 +22,7 @@ describe('store -> add', () => {
       expect(added).toEqual(`${b}${green}facebook${r} set to ${b}${green}123abc${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -41,7 +41,7 @@ describe('store -> add', () => {
       expect(rejected).toEqual(`${b}${red}gmail already present in store${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

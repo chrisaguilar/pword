@@ -8,6 +8,6 @@ export const close = async function close(store: Map<{}, {}>): Promise<void> {
     return await write(storefile, await encrypt(store), 'hex');
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

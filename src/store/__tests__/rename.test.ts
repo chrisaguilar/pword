@@ -24,7 +24,7 @@ describe('store -> rename', () => {
       expect(await rename('fb', 'gmail')).toEqual(`Renamed ${b}${green}fb${r} to ${b}${green}gmail${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -34,7 +34,7 @@ describe('store -> rename', () => {
       expect(await rename('reddit', 'alienblue')).toEqual(`${b}${red}reddit not present in store${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });

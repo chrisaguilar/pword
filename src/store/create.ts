@@ -8,6 +8,6 @@ export const create = async function create(): Promise<boolean> {
     return !!write(storefile, await encrypt(new Map()), 'hex');
 
   } catch (e) {
-    throw e;
+    return console.error(e) as any;
   }
 };

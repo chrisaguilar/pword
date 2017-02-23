@@ -18,7 +18,7 @@ describe('store -> get', () => {
       expect(await get('gmail')).toEqual(`${b}${green}gmail${r}: gmailPass`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 
@@ -28,7 +28,7 @@ describe('store -> get', () => {
       expect(await get('youtube')).toEqual(`${b}${red}youtube does not exist in store${r}`);
 
     } catch (e) {
-      throw e;
+      return console.error(e) as any;
     }
   });
 });
