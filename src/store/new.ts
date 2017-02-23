@@ -1,12 +1,10 @@
-import { add } from '.';
-import { rand } from '../lib/rand';
+import { rand } from 'lib/rand';
+import * as s from 'store';
 
 export const newpass = async function newpass(length: number, name: string) {
   try {
-
-    return await add(name, await rand(length));
-
+    return await s.add(name, await rand(length));
   } catch (e) {
-    throw e;
+    return console.error(e);
   }
 };
