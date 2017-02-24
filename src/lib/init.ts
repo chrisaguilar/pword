@@ -1,4 +1,6 @@
-import { exists, remove } from 'fs-promise';
+import { ensureDir, exists, remove } from 'fs-promise';
+import { homedir } from 'os';
+import { resolve } from 'path';
 
 import * as k from '../key';
 import * as s from '../store';
@@ -9,6 +11,7 @@ interface Init {
 
 export const init: Init = async function() {
   try {
+    await ensureDir(resolve(homedir(), '.pword'));
     if (!await exists(k.file) && !await exists(s.file)) {
       await k.create();
       await s.create();
