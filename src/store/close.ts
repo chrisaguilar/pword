@@ -1,11 +1,15 @@
-import { writeFile as write } from 'fs-promise';
+import { writeFile } from 'fs-promise';
 
-import { encrypt, storefile } from '.';
+import * as s from '.';
 
-export const close = async function close(store: Map<{}, {}>): Promise<void> {
+interface Close {
+  (store: Map<{}, {}>): Promise<void>;
+}
+
+export const close: Close = async function (store) {
   try {
 
-    return await write(storefile, await encrypt(store), 'hex');
+    return await writeFile(s.file, await s.encrypt(store), 'hex');
 
   } catch (e) {
     return console.error(e) as any;

@@ -1,10 +1,14 @@
-import { createCipher } from 'crypto';
+import { Cipher, createCipher } from 'crypto';
 
-import { key } from '../key';
+import * as k from '../key';
 
-const transform = function transform(str: string): Promise<string> {
-  return new Promise<string>(async (resolve, reject) => {
-    const cipher = createCipher('aes256', await key());
+interface Transform {
+  (str: string): Promise<string>;
+}
+
+const transform: Transform = function (str) {
+  return new Promise(async (resolve, reject) => {
+    const cipher: Cipher = createCipher('aes256', await k.open());
     const encrypted: string[] = [];
 
     cipher
@@ -17,7 +21,11 @@ const transform = function transform(str: string): Promise<string> {
   });
 };
 
-export const encrypt = async function encrypt(store: Map<{}, {}>): Promise<string> {
+interface Encrypt {
+  (store: Map<{}, {}>): Promise<string>;
+}
+
+export const encrypt: Encrypt = async function (store) {
   try {
 
     return await transform(JSON.stringify([ ...store.entries() ]));

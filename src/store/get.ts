@@ -1,14 +1,18 @@
-import { open } from '.';
+import * as s from '.';
 import { b, green, r, red } from '../lib/formatters';
 
-export const get = async function get(name: string): Promise<string> {
+interface Get {
+  (name: string): Promise<string>;
+}
+
+export const get: Get = async function (name) {
   try {
 
-    const store = await open();
+    const store: Map<{}, {}> = await s.open();
 
     if (!store.has(name)) return `${b}${red}${name} does not exist in store${r}`;
 
-    const password = store.get(name) as string;
+    const password: string = store.get(name) as string;
 
     return `${b}${green}${name}${r}: ${password}`;
 

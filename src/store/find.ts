@@ -1,12 +1,16 @@
-import { open } from '.';
+import * as s from '.';
 import { b, green, r, red } from '../lib/formatters';
 
-export const find = async function find(term: string): Promise<string|string[]> {
+interface Find {
+  (term: string): Promise<string | string[]>;
+}
+
+export const find: Find = async function (term) {
   try {
 
-    const store: Map<{}, {}> = await open();
+    const store: Map<{}, {}> = await s.open();
     const re: RegExp = new RegExp(term, 'i');
-    const matches = [ ...store.entries() ].filter(([ a, b ]) => re.test(a as string));
+    const matches: any[][] = [ ...store.entries() ].filter(([ a, b ]) => re.test(a as string));
 
     if (matches.length === 0)
       return `${b}${red}No matches found for ${term}${r}`;

@@ -1,16 +1,20 @@
-import { close, open } from '.';
+import * as s from '.';
 import { b, green, r, red } from '../lib/formatters';
 
-export const add = async function add(name: string, password: string): Promise<string> {
+interface Add {
+  (name: string, password: string): Promise<string>;
+}
+
+export const add: Add = async function (name, password) {
   try {
 
-    const store = await open();
+    const store: Map<{}, {}> = await s.open();
 
-    if (store.get(name))
+    if (store.has(name))
       return `${b}${red}${name} already present in store${r}`;
 
     store.set(name, password);
-    await close(store);
+    await s.close(store);
 
     return `${b}${green}${name}${r} set to ${b}${green}${password}${r}`;
 

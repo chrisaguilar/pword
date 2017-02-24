@@ -1,10 +1,14 @@
-import { createDecipher } from 'crypto';
+import { createDecipher, Decipher } from 'crypto';
 
-import { key } from '../key';
+import * as k from '../key';
 
-const transform = function transform(str: string): Promise<string> {
-  return new Promise<string>(async (resolve, reject) => {
-    const decipher = createDecipher('aes256', await key());
+interface Transform {
+  (str: string): Promise<string>;
+}
+
+const transform: Transform = function (str) {
+  return new Promise(async (resolve, reject) => {
+    const decipher: Decipher = createDecipher('aes256', await k.open());
     const decrypted: string[] = [];
 
     decipher
@@ -17,7 +21,11 @@ const transform = function transform(str: string): Promise<string> {
   });
 };
 
-export const decrypt = async function decrypt(store: string): Promise<Map<{}, {}>> {
+interface Decrypt {
+  (store: string): Promise<Map<{}, {}>>;
+}
+
+export const decrypt: Decrypt = async function (store) {
   try {
 
     return new Map(JSON.parse(await transform(store)));

@@ -1,16 +1,20 @@
-import { close, open } from '.';
+import * as s from '.';
 import { b, green, r, red } from '../lib/formatters';
 
-export const rename = async function rename(from: string, to: string): Promise<string> {
+interface Rename {
+  (from: string, to: string): Promise<string>;
+}
+
+export const rename: Rename = async function (from, to) {
   try {
 
-    const store = await open();
+    const store: Map<{}, {}> = await s.open();
 
     if (!store.has(from)) return `${b}${red}${from} not present in store${r}`;
 
     store.set(to, store.get(from));
     store.delete(from);
-    await close(store);
+    await s.close(store);
 
     return `Renamed ${b}${green}${from}${r} to ${b}${green}${to}${r}`;
 

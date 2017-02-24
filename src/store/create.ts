@@ -1,11 +1,11 @@
-import { writeFile as write } from 'fs-promise';
+import { writeFile } from 'fs-promise';
 
-import { encrypt, storefile } from '.';
+import * as s from '.';
 
-export const create = async function create(): Promise<boolean> {
+export const create = async function () {
   try {
 
-    return !!write(storefile, await encrypt(new Map()), 'hex');
+    return writeFile(s.file, await s.encrypt(new Map()), 'hex');
 
   } catch (e) {
     return console.error(e) as any;
