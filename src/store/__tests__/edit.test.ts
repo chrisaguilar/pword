@@ -1,40 +1,41 @@
-import { destroy, initialize } from '.';
-import { close, edit, open } from '..';
+import * as s from '..';
+import { setup } from '../../lib';
 import { b, green, r, red } from '../../lib/formatters';
 
 
 describe('store -> edit', () => {
-  beforeAll(async () => await initialize());
-  afterAll(async () => await destroy());
-
   test('gives items new passwords', async () => {
     try {
+      await setup.before();
 
-      const store = await open();
+      const store = await s.open();
       store.set('Outlook MaIl', 'abc123');
       store.set('gmail', 'gmailPass');
       store.set('facebook', 'notmymailpass');
-      await close(store);
+      await s.close(store);
 
-      const edited = await edit('facebook', 'newpass');
+      const edited = await s.edit('facebook', 'newpass');
       store.set('facebook', 'newpass');
 
-      expect(await open()).toEqual(store);
+      expect(await s.open()).toEqual(store);
       expect(edited).toEqual(`${b}${green}facebook${r} set to ${b}${green}newpass${r}`);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 
   test('alerts user if the item does not exist in the store', async () => {
     try {
+      await setup.before();
 
-      const rejected = await edit('whatwhat', 'bzxcnbvxnvc');
+      const rejected = await s.edit('whatwhat', 'bzxcnbvxnvc');
       expect(rejected).toEqual(`${b}${red}whatwhat not in the store${r}`);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });

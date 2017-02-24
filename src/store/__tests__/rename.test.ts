@@ -1,40 +1,41 @@
-import { destroy, initialize } from '.';
-import { close, open, rename } from '..';
+import * as s from '..';
+import { setup } from '../../lib';
 import { b, green, r, red } from '../../lib/formatters';
 
 describe('store -> rename', () => {
-  beforeAll(async () => initialize());
-  afterAll(async () => destroy());
-
   test('renames an item', async () => {
     try {
+      await setup.before();
 
-      const store = await open();
+      const store = await s.open();
       store.set('facebook', 'abc123');
-      await close(store);
+      await s.close(store);
 
-      await rename('facebook', 'fb');
-      expect(await open()).not.toEqual(store);
+      await s.rename('facebook', 'fb');
+      expect(await s.open()).not.toEqual(store);
 
       store.set('fb', store.get('facebook'));
       store.delete('facebook');
 
-      expect((await open()).entries()).toEqual(store.entries());
+      expect((await s.open()).entries()).toEqual(store.entries());
 
-      expect(await rename('fb', 'gmail')).toEqual(`Renamed ${b}${green}fb${r} to ${b}${green}gmail${r}`);
+      expect(await s.rename('fb', 'gmail')).toEqual(`Renamed ${b}${green}fb${r} to ${b}${green}gmail${r}`);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 
   test('alerts the user if the item is not present in the store', async () => {
     try {
+      await setup.before();
 
-      expect(await rename('reddit', 'alienblue')).toEqual(`${b}${red}reddit not present in store${r}`);
+      expect(await s.rename('reddit', 'alienblue')).toEqual(`${b}${red}reddit not present in store${r}`);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });

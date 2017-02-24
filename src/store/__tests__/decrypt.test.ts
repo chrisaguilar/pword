@@ -1,47 +1,25 @@
-import { decrypt, encrypt } from '..';
+import * as s from '..';
+import { setup } from '../../lib';
 
 describe('store -> decrypt', () => {
-  let encA: string;
-  let encB: string;
-  let decA: Map<{}, {}>;
-  let decB: Map<{}, {}>;
-
-  beforeAll(async () => {
+  test('decrypts data', async () => {
     try {
+      await setup.before();
+      let encA = await s.encrypt(new Map());
+      let encB = await s.encrypt(new Map([ [ 'gmail', 'abc123' ] ]));
+      let decA = await s.decrypt(encA);
+      let decB = await s.decrypt(encB);
 
-      encA = await encrypt(new Map());
-      encB = await encrypt(new Map([ [ 'gmail', 'abc123' ] ]));
-
-    } catch (e) {
-      return console.error(e) as any;
-    }
-  });
-
-  test('returns a new map', async () => {
-    try {
-
-      decA = await decrypt(encA);
-      decB = await decrypt(encB);
       expect(decA).toBeInstanceOf(Map);
       expect(decA.size).toBe(0);
       expect(decB).toBeInstanceOf(Map);
       expect(decB.size).toBe(1);
-
-    } catch (e) {
-      return console.error(e) as any;
-    }
-  });
-
-  test('properly decrypts data', async () => {
-    try {
-
-      decA = await decrypt(encA);
-      decB = await decrypt(encB);
       expect(decA.entries().next().value).toBeUndefined();
       expect(decB.entries().next().value).toEqual([ 'gmail', 'abc123' ]);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });

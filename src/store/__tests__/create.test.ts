@@ -1,21 +1,20 @@
-import { readFile as read } from 'fs-promise';
+import { readFile } from 'fs-promise';
 
-import { destroy, initialize } from '.';
-import { encrypt, storefile } from '..';
+import * as s from '..';
+import { setup } from '../../lib';
 
 describe('store -> create', () => {
-  beforeAll(async () => await initialize());
-  afterAll(async () => await destroy());
-
   test('uses key to write a new map to the store file', async () => {
     try {
+      await setup.before();
 
-      const map = await encrypt(new Map());
-      const store = await read(storefile, 'hex');
+      const map = await s.encrypt(new Map());
+      const store = await readFile(s.file, 'hex');
       expect(map).toEqual(store);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });

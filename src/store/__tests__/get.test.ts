@@ -1,34 +1,35 @@
-import { destroy, initialize } from '.';
-import { close, get, open } from '..';
+import * as s from '..';
+import { setup } from '../../lib';
 import { b, green, r, red } from '../../lib/formatters';
 
 describe('store -> get', () => {
-  beforeAll(async () => await initialize());
-  afterAll(async () => await destroy());
-
   test('gets specified password from store', async () => {
     try {
+      await setup.before();
 
-      const store = await open();
+      const store = await s.open();
       store.set('facebook', 'abc123');
       store.set('gmail', 'gmailPass');
-      await close(store);
+      await s.close(store);
 
-      expect(await get('facebook')).toEqual(`${b}${green}facebook${r}: abc123`);
-      expect(await get('gmail')).toEqual(`${b}${green}gmail${r}: gmailPass`);
+      expect(await s.get('facebook')).toEqual(`${b}${green}facebook${r}: abc123`);
+      expect(await s.get('gmail')).toEqual(`${b}${green}gmail${r}: gmailPass`);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 
   test('specified password does not exist', async () => {
     try {
+      await setup.before();
 
-      expect(await get('youtube')).toEqual(`${b}${red}youtube does not exist in store${r}`);
+      expect(await s.get('youtube')).toEqual(`${b}${red}youtube does not exist in store${r}`);
 
+      await setup.after();
     } catch (e) {
-      return console.error(e) as any;
+      expect(e).toBeNull();
     }
   });
 });
