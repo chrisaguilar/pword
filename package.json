@@ -1,6 +1,6 @@
 {
   "name": "@chrisaguilar/pword",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A password generator + manager",
   "main": "index.js",
   "bin": {
@@ -51,10 +51,18 @@
     "tslint-eslint-rules": "^3.3.0"
   },
   "jest": {
-    "moduleFileExtensions": ["js", "jsx", "json", "ts", "tsx"],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
     "notify": true,
     "testEnvironment": "node",
-    "testMatch": [ "**/__tests__/**/*.test.ts?(x)" ],
+    "testMatch": [
+      "**/__tests__/**/*.test.ts?(x)"
+    ],
     "transform": {
       ".(ts|tsx)": "ts-jest/preprocessor"
     },
