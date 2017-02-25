@@ -22,15 +22,22 @@ const transform: Transform = function (str) {
 };
 
 interface Encrypt {
-  (store: Map<{}, {}>): Promise<string>;
+  (store: Map<{}, {}>, tries?: number): Promise<string>;
 }
 
-export const encrypt: Encrypt = async function (store) {
+export const encrypt: Encrypt = async function (store, tries = 0) {
   try {
+
+    if (tries === 10)
+      return console.error(
+        'The key or store are broken, sorry about that.\n',
+        'I\'m in the process of trying to make this never happen, bear with me.'
+      );
 
     return await transform(JSON.stringify([ ...store.entries() ]));
 
   } catch (e) {
-    return console.error(e) as any;
+    console.error('Error trying to encrypt the store, trying again.');
+    return await encrypt(store, ++tries) as any;
   }
 };

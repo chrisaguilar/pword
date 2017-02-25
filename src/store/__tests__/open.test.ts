@@ -1,20 +1,18 @@
+import { expect } from 'chai';
 import * as s from '..';
 import { setup } from '../../lib';
 
 
 describe('store -> open', () => {
-  test('opens & decrypts store file', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
+
+  it('opens & decrypts store file', async () => {
 
       const store = await s.open();
-      expect(store).toBeTruthy();
-      expect(store.size).toBe(0);
-      expect(store.entries().next().value).toBeUndefined();
+      expect(store).to.exist;
+      expect(store.size).to.equal(0);
+      expect(store.entries().next().value).to.be.undefined;
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
   });
 });

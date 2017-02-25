@@ -1,12 +1,14 @@
+import { expect } from 'chai';
+
 import { help } from '..';
 
 describe('help', () => {
-  test('should return data', () => {
-    expect(help()).toBeDefined();
-    expect(help()).toBeTruthy();
+  it('should return data', () => {
+    expect(help()).to.exist;
+    expect(help()).to.be.ok;
   });
-  test('should return a string', () => {
-    expect(typeof help()).toBe('string');
-    expect(help().length).toBeGreaterThan(0);
+  it('should return a string', () => {
+    expect(help()).to.be.a('string');
+    expect(help().length).to.be.greaterThan(0);
   });
 });

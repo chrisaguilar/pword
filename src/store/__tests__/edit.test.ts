@@ -1,41 +1,33 @@
+import { expect } from 'chai';
 import * as s from '..';
 import { setup } from '../../lib';
 import { b, green, r, red } from '../../lib/formatters';
 
 
 describe('store -> edit', () => {
-  test('gives items new passwords', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      const store = await s.open();
-      store.set('Outlook MaIl', 'abc123');
-      store.set('gmail', 'gmailPass');
-      store.set('facebook', 'notmymailpass');
-      await s.close(store);
+  it('gives items new passwords', async () => {
 
-      const edited = await s.edit('facebook', 'newpass');
-      store.set('facebook', 'newpass');
+    const store = await s.open();
+    store.set('Outlook MaIl', 'abc123');
+    store.set('gmail', 'gmailPass');
+    store.set('facebook', 'notmymailpass');
+    await s.close(store);
 
-      expect(await s.open()).toEqual(store);
-      expect(edited).toEqual(`${b}${green}facebook${r} set to ${b}${green}newpass${r}`);
+    const edited = await s.edit('facebook', 'newpass');
+    store.set('facebook', 'newpass');
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    expect([ ...(await s.open()).entries() ]).to.eql([ ...store.entries() ]);
+    expect(edited).to.equal(`${b}${green}facebook${r} set to ${b}${green}newpass${r}`);
+
   });
 
-  test('alerts user if the item does not exist in the store', async () => {
-    try {
-      await setup.before();
+  it('alerts user if the item does not exist in the store', async () => {
 
-      const rejected = await s.edit('whatwhat', 'bzxcnbvxnvc');
-      expect(rejected).toEqual(`${b}${red}whatwhat not in the store${r}`);
+    const rejected = await s.edit('whatwhat', 'bzxcnbvxnvc');
+    expect(rejected).to.equal(`${b}${red}whatwhat not in the store${r}`);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
   });
 });

@@ -1,22 +1,20 @@
+import { expect } from 'chai';
 import { remove, writeFile } from 'fs-promise';
 
 import * as k from '..';
 import { rand, setup } from '../../lib';
 
 describe('key -> open', () => {
-  test('opens the key file', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      await remove(k.file);
-      await writeFile(k.file, await rand(24), 'hex');
+  it('opens the key file', async () => {
 
-      const testkey: string = await k.open();
-      expect(testkey.length).toEqual(24);
+    await remove(k.file);
+    await writeFile(k.file, await rand(24), 'hex');
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    const testkey: string = await k.open();
+    expect(testkey.length).to.equal(24);
+
   });
 });

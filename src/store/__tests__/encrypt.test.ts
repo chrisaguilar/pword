@@ -1,19 +1,17 @@
+import { expect } from 'chai';
 import * as s from '..';
 import { setup } from '../../lib';
 
 describe('store -> encrypt', () => {
-  test('returns data', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
+
+  it('returns data', async () => {
 
       const a: string = await s.encrypt(new Map());
       const b: string = await s.encrypt(new Map([ [ 'gmail', 'abc123' ] ]));
-      expect(a.length).toBeGreaterThan(0);
-      expect(b.length).toBeGreaterThan(0);
+      expect(a.length).to.be.greaterThan(0);
+      expect(b.length).to.be.greaterThan(0);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
   });
 });

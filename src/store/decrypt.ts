@@ -22,15 +22,22 @@ const transform: Transform = function (str) {
 };
 
 interface Decrypt {
-  (store: string): Promise<Map<{}, {}>>;
+  (store: string, tries?: number): Promise<Map<{}, {}>>;
 }
 
-export const decrypt: Decrypt = async function (store) {
+export const decrypt: Decrypt = async function (store, tries = 0) {
   try {
+
+    if (tries === 10)
+      return console.error(
+        'The key or store are broken, sorry about that.\n',
+        'I\'m in the process of trying to make this never happen, bear with me.'
+      );
 
     return new Map(JSON.parse(await transform(store)));
 
   } catch (e) {
-    return console.error(e) as any;
+    console.error('Error trying to decrypt the store, trying again.');
+    return await decrypt(store, ++tries) as any;
   }
 };

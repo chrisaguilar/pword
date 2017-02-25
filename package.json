@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "tslint --project tsconfig.json",
-    "test": "jest",
+    "test": "mocha --compilers ts:ts-node/register --reporter min --recursive src/",
     "postinstall": "node ./init.js"
   },
   "repository": {
@@ -41,31 +41,14 @@
     "typescript": "^2.1.6"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.35",
     "@types/fs-promise": "^1.0.1",
-    "@types/jest": "^18.1.1",
     "@types/minimist": "^1.2.0",
+    "@types/mocha": "^2.2.39",
     "@types/node": "^7.0.5",
-    "jest": "^19.0.0",
-    "ts-jest": "^19.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
     "tslint": "^4.4.2",
     "tslint-eslint-rules": "^3.3.0"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json",
-      "ts",
-      "tsx"
-    ],
-    "notify": true,
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/__tests__/**/*.test.ts?(x)"
-    ],
-    "transform": {
-      ".(ts|tsx)": "ts-jest/preprocessor"
-    },
-    "verbose": false
   }
 }

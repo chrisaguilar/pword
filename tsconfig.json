@@ -6,7 +6,7 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "target": "es6"
   }
 }

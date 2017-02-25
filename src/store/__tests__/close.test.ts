@@ -1,31 +1,30 @@
+import { expect } from 'chai';
+
 import * as s from '..';
 import { setup } from '../../lib';
 
 describe('store -> close', () => {
-  test('writes given data to the store', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      const store = await s.open();
+  it('writes given data to the store', async () => {
 
-      store.set('facebook', 'facebook_pass');
-      await s.close(store);
+    const store = await s.open();
 
-      expect((await s.open()).has('facebook')).toBeTruthy();
-      expect((await s.open()).get('facebook')).toBe('facebook_pass');
+    store.set('facebook', 'facebook_pass');
+    await s.close(store);
 
-      store.set('gmail', 'gmail_pass');
-      await s.close(store);
+    expect((await s.open()).has('facebook')).to.be.ok;
+    expect((await s.open()).get('facebook')).to.equal('facebook_pass');
 
-      const newstore = await s.open();
-      expect(newstore.has('facebook')).toBeTruthy();
-      expect(newstore.has('gmail')).toBeTruthy();
-      expect(newstore.get('facebook')).toBe('facebook_pass');
-      expect(newstore.get('gmail')).toBe('gmail_pass');
+    store.set('gmail', 'gmail_pass');
+    await s.close(store);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    const newstore = await s.open();
+    expect(newstore.has('facebook')).to.be.ok;
+    expect(newstore.has('gmail')).to.be.ok;
+    expect(newstore.get('facebook')).to.equal('facebook_pass');
+    expect(newstore.get('gmail')).to.equal('gmail_pass');
+
   });
 });

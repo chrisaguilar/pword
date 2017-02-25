@@ -1,22 +1,20 @@
+import { expect } from 'chai';
 import { readFile, remove } from 'fs-promise';
 
 import * as k from '..';
 import { setup } from '../../lib';
 
 describe('key -> create', () => {
-  test('writes 25..100 random characters to a file', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      await remove(k.file);
-      await k.create();
-      const key: string = await readFile(k.file, 'hex');
-      expect(key.length).toBeGreaterThanOrEqual(25);
-      expect(key.length).toBeLessThan(100);
+  it('writes 25..100 random characters to a file', async () => {
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    await remove(k.file);
+    await k.create();
+    const testkey: string = await readFile(k.file, 'hex');
+    expect(testkey.length).to.be.at.least(25);
+    expect(testkey.length).to.be.below(100);
+
   });
 });

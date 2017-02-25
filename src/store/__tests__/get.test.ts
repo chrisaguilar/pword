@@ -1,35 +1,28 @@
+import { expect } from 'chai';
+
 import * as s from '..';
 import { setup } from '../../lib';
 import { b, green, r, red } from '../../lib/formatters';
 
 describe('store -> get', () => {
-  test('gets specified password from store', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      const store = await s.open();
-      store.set('facebook', 'abc123');
-      store.set('gmail', 'gmailPass');
-      await s.close(store);
+  it('gets specified password from store', async () => {
 
-      expect(await s.get('facebook')).toEqual(`${b}${green}facebook${r}: abc123`);
-      expect(await s.get('gmail')).toEqual(`${b}${green}gmail${r}: gmailPass`);
+    const store = await s.open();
+    store.set('facebook', 'abc123');
+    store.set('gmail', 'gmailPass');
+    await s.close(store);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    expect(await s.get('facebook')).to.equal(`${b}${green}facebook${r}: abc123`);
+    expect(await s.get('gmail')).to.equal(`${b}${green}gmail${r}: gmailPass`);
+
   });
 
-  test('specified password does not exist', async () => {
-    try {
-      await setup.before();
+  it('specified password does not exist', async () => {
 
-      expect(await s.get('youtube')).toEqual(`${b}${red}youtube does not exist in store${r}`);
+    expect(await s.get('youtube')).to.equal(`${b}${red}youtube does not exist in store${r}`);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
   });
 });

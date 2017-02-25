@@ -1,20 +1,18 @@
+import { expect } from 'chai';
 import { readFile } from 'fs-promise';
 
 import * as s from '..';
 import { setup } from '../../lib';
 
 describe('store -> create', () => {
-  test('uses key to write a new map to the store file', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      const map = await s.encrypt(new Map());
-      const store = await readFile(s.file, 'hex');
-      expect(map).toEqual(store);
+  it('uses key to write a new map to the store file', async () => {
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    const map = await s.encrypt(new Map());
+    const store = await readFile(s.file, 'hex');
+    expect(map).to.equal(store);
+
   });
 });

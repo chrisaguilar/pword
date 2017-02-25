@@ -1,44 +1,36 @@
+import { expect } from 'chai';
 import * as s from '..';
 import { setup } from '../../lib';
 import { b, green, r, red } from '../../lib/formatters';
 
 describe('store -> del', () => {
-  test('deletes items from the store', async () => {
-    try {
-      await setup.before();
+  beforeEach(async () => await setup.before());
+  afterEach(async () => await setup.after());
 
-      const store = await s.open();
+  it('deletes items from the store', async () => {
 
-      store.set('gmail', 'abc123');
-      await s.close(store);
-      expect(await s.open()).toEqual(store);
+    const store = await s.open();
 
-      store.set('facebook', '123abc');
-      await s.close(store);
-      expect(await s.open()).toEqual(store);
+    store.set('gmail', 'abc123');
+    await s.close(store);
+    expect([ ...(await s.open()).entries() ]).to.eql([ ...store.entries() ]);
 
-      const deleted = await s.del('facebook');
-      store.delete('facebook');
-      expect(await s.open()).toEqual(store);
+    store.set('facebook', '123abc');
+    await s.close(store);
+    expect([ ...(await s.open()).entries() ]).to.eql([ ...store.entries() ]);
 
-      expect(deleted).toEqual(`Deleted ${b}${green}facebook${r} from the store`);
+    const deleted = await s.del('facebook');
+    store.delete('facebook');
+    expect([ ...(await s.open()).entries() ]).to.eql([ ...store.entries() ]);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
+    expect(deleted).to.equal(`Deleted ${b}${green}facebook${r} from the store`);
+
   });
 
-  test('alerts the user if an item is not present in the store', async () => {
-    try {
-      await setup.before();
+  it('alerts the user if an item is not present in the store', async () => {
 
-      const rejected = await s.del('asdf');
-      expect(rejected).toEqual(`${b}${red}asdf not in the store${r}`);
+    const rejected = await s.del('asdf');
+    expect(rejected).to.equal(`${b}${red}asdf not in the store${r}`);
 
-      await setup.after();
-    } catch (e) {
-      expect(e).toBeNull();
-    }
   });
 });
