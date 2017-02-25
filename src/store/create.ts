@@ -5,7 +5,8 @@ import * as s from '.';
 export const create = async function () {
   try {
 
-    return writeFile(s.file, await s.encrypt(new Map()), 'hex');
+    const store = await s.encrypt(new Map());
+    return writeFile(s.file, store, 'hex');
 
   } catch (e) {
     return console.error(e) as any;
