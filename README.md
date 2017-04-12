@@ -1,5 +1,11 @@
 # @chrisaguilar/pword
 
+## NOT MAINTAINED
+This project is no longer maintained because I'm just one person and I
+was spending way too much time trying to debug this. Sometimes it
+worked, other times it didn't, and it's frustrating, but I've chosen to
+move on. Feel free to look around, though.
+
 ### Why?
 
 Because I wanted to. I thought it would be fun to make, so I made it, and it
