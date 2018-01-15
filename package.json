@@ -1,6 +1,6 @@
 {
     "name": "@chrisaguilar/pword",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A password generator + manager",
     "main": "index.js",
     "bin": {
