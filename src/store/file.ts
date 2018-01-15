@@ -1,4 +1,7 @@
 import { homedir } from 'os';
-import { resolve } from 'path';
+import { join } from 'path';
 
-export const file: string = resolve(homedir(), '.pword/store');
+/**
+ * Location of password store.
+ */
+export const file: string = join(homedir(), '.pword');

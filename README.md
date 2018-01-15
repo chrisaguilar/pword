@@ -1,17 +1,11 @@
 # @chrisaguilar/pword
 
-## NOT MAINTAINED
-This project is no longer maintained because I'm just one person and I
-was spending way too much time trying to debug this. Sometimes it
-worked, other times it didn't, and it's frustrating, but I've chosen to
-move on. Feel free to look around, though.
-
-### Why?
+## Why?
 
 Because I wanted to. I thought it would be fun to make, so I made it, and it
 *was* fun to make. :)
 
-### Installation
+## Installation
 
 `$ npm install -g @chrisaguilar/pword`
 
@@ -19,38 +13,50 @@ OR
 
 `$ yarn global add @chrisaguilar/pword`
 
-### Usage
+OR
+
+`$ npx @chrisaguilar/pword`
+
+## Usage
 
 ```
-$ pword <option> <args>
+$ pword --help
 
--h, --help                          Print this screen
--v, --version                       Print the version number
--a, --add <name> <password>         Save a new password
--d, --delete <name>                 Delete a password
--e, --edit <name> <new_password>    Give <name> a new password
--f, --find <RegEx>                  Find passwords
--g, --get <name>                    Get a password
--n, --new [length] <name>           Generate a new password of [length]
-                                    characters (Default: 20)
--r, --rename <from> <to>            Rename a password
+Usage: index [options] [command]
+
+Simple, unsafe password manager
+
+
+Options:
+
+  -V, --version  output the version number
+  -h, --help     output usage information
+
+
+Commands:
+
+  add <name> <value>            Add a password
+  delete <name>                 Delete a password
+  edit <name> <new_password>    Edit a password
+  find [RegEx]                  Find a password
+  get <name>                    Get a password
+  new <name> [length]           Generate a new random password of [length] characters (default: 20)
+  rename <old_name> <new_name>  Rename a password
 ```
 
-### Examples
+## Examples
 
 ```
-$ pword -a gmail g_pass     Save gmail as g_pass
-$ pword -n 50 wikipedia     Generate 50 random alphanumeric characters and save
-                            it as wikipedia
-$ pword --find i            Find all password that contain an i (here, gmail &
-                            wikipedia)
+$ pword add gmail g_pass      Save gmail as g_pass
+$ pword new wikipedia 50    Generate a new, 50-character long password for wikipedia
+$ pword find i            Find all passwords that contain an i (here, gmail & wikipedia)
 ```
 
-### License
+## License
 
 MIT License
 
-Copyright (c) 2017 Christopher M. Aguilar
+Copyright (c) 2018 Christopher M. Aguilar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

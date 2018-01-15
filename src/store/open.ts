@@ -1,17 +1,14 @@
-import { readFile } from 'fs-promise';
+import { readJSON } from 'fs-extra';
 
-import * as s from '.';
+import { file } from '~pword/store';
 
-interface Open {
-  (): Promise<Map<{}, {}>>;
+/**
+ * Opens password store.
+ */
+export async function open (): Promise<Map<string, string> | void> {
+    try {
+        return new Map(await readJSON(file));
+    } catch (e) {
+        console.error(e);
+    }
 }
-
-export const open: Open = async function () {
-  try {
-
-    return await s.decrypt(await readFile(s.file, 'hex'));
-
-  } catch (e) {
-    return console.error(e) as any;
-  }
-};

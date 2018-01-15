@@ -1,12 +1,29 @@
 {
-  "compilerOptions": {
-    "alwaysStrict": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "strictNullChecks": false,
-    "target": "es6"
-  }
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "commonjs",
+        "declaration": false,
+        "sourceMap": false,
+        "removeComments": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "moduleResolution": "node",
+        "baseUrl": "./src",
+        "paths": {
+            "~pword*": [
+                "./*"
+            ]
+        },
+        "plugins": [{
+            "name": "tslint-language-service"
+        }]
+    }
 }
