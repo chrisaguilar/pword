@@ -8,7 +8,8 @@
     },
     "scripts": {
         "build": "webpack",
-        "lint": "tslint --project tsconfig.json"
+        "lint": "tslint --project tsconfig.json",
+        "prepublish": "npm run build"
     },
     "repository": {
         "type": "git",
