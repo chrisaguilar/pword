@@ -48,8 +48,8 @@ Commands:
 
 ```
 $ pword add gmail g_pass      Save gmail as g_pass
-$ pword new wikipedia 50    Generate a new, 50-character long password for wikipedia
-$ pword find i            Find all passwords that contain an i (here, gmail & wikipedia)
+$ pword new wikipedia 50      Generate a new, 50-character long password for wikipedia
+$ pword find i                Find all passwords that contain an i (here, gmail & wikipedia)
 ```
 
 ## License
